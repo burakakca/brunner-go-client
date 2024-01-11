@@ -1,4 +1,4 @@
-package windmill
+package brunner
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"os"
 
-	api "github.com/windmill-labs/windmill-go-client/api"
+	api "github.com/burakakca/brunner-go-client/api"
 )
 
 type ClientWithWorkspace struct {
@@ -96,20 +96,20 @@ func SetVariable(path string, value string) error {
 	if res.StatusCode()/100 != 2 {
 		f = true
 	}
-  if f == true {
-    res, err := client.Client.CreateVariableWithResponse(context.Background(), client.Workspace, &api.CreateVariableParams{}, 
-      api.CreateVariableJSONRequestBody{
-        Path: path,
-        Value: value,
-    })
+	if f == true {
+		res, err := client.Client.CreateVariableWithResponse(context.Background(), client.Workspace, &api.CreateVariableParams{},
+			api.CreateVariableJSONRequestBody{
+				Path:  path,
+				Value: value,
+			})
 
-    if err != nil {
-      return err
-    }
-    if res.StatusCode()/100 != 2 {
-      return errors.New(string(res.Body))
-    }
-  }
+		if err != nil {
+			return err
+		}
+		if res.StatusCode()/100 != 2 {
+			return errors.New(string(res.Body))
+		}
+	}
 	return nil
 }
 

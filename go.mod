@@ -1,4 +1,4 @@
-module github.com/windmill-labs/windmill-go-client
+module github.com/burakakca/brunner-go-client
 
 go 1.19
 
